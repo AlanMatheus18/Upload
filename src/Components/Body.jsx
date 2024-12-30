@@ -34,9 +34,9 @@ export default function InputFileUpload() {
     const fileExtension = file.name.split('.').pop().toLowerCase();
     const url =
       fileExtension === 'pdf'
-        ? 'https://apiplanilha.aiatende.dev.br/pdf/upload'
+        ? 'https://apiplanilha.aiatende.dev.br/pdf/upload/'
         : fileExtension === 'csv'
-        ? 'https://apiplanilha.aiatende.dev.br/csv/upload'
+        ? 'https://apiplanilha.aiatende.dev.br/csv/upload/'
         : null;
 
     if (!url) {
