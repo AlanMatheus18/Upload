@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -15,6 +15,15 @@ export default function InputFileUpload() {
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess('');
+      }, 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [success]);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -55,6 +64,9 @@ export default function InputFileUpload() {
       setError(`Erro ao enviar o arquivo: ${err.response?.data?.message || err.message}`);
     }
   };
+
+   
+
 
   return (
     <Box
