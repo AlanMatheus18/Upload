@@ -51,6 +51,7 @@ export default function InputFileUpload() {
     if (!url) {
       setError('Formato de arquivo não suportado! Use apenas PDF ou CSV.');
       return;
+      
     }
 
     try {
@@ -59,7 +60,10 @@ export default function InputFileUpload() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setSuccess(`Arquivo enviado com sucesso: ${response.data.message || 'Sucesso'}`);
+      setSuccess(`Arquivo: ${file.name} - enviado com sucesso: ${response.data.message || 'Sucesso'}`);
+      setFile(null);
+      
+      
     } catch (err) {
       setError(`Erro ao enviar o arquivo: ${err.response?.data?.message || err.message}`);
     }
